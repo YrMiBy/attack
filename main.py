@@ -37,20 +37,29 @@ class Fighter: # класс боец
 
 
 class Monster: # класс Monster
-    def __init__(self, name):
+    def __init__(self, name, sila):
         self.name = name
+        self.sila = sila
+
+    def monster_sila(self):
+        if self.sila <= 0:
+            print('Монстр уничтожен')
+        else:
+            self.sila = self.sila - 2 # Уменьшение силы монстра при нанесении удара
+            print(f'cила монстра равна {self.sila}')
 
 # объекты бойца и монстра
 fighter = Fighter("Боец")
-monster = Monster("Монстр")
+monster = Monster("Монстр", 10)
 
 # Демонстрация боя
-sword = Sword()
-bow = Bow()
+sword = Sword() # объект меч
+bow = Bow() # объект лук
 
-#fighter.v_attack(sword)
-fighter.changeWeapon(sword)
+fighter.changeWeapon(sword) # функция changeWeapon объекта fighter, в которую передается аргумент sword
 fighter.attack(monster)
+monster.monster_sila()
 
 fighter.changeWeapon(bow)
 fighter.attack(monster)
+monster.monster_sila()
